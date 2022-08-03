@@ -1,0 +1,4 @@
+start
+collect board size and number of ships in the game
+set up board using loops
+randomly place ships on the board
