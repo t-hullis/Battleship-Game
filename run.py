@@ -38,11 +38,13 @@ class GameBoard:
         '''
         Function which takes user inputs to fire shots at the battleships on the board
         '''
-        while True:
+        stopgo = True
+        while stopgo:
             try:
                 x_shot = int(input('Enter X coordinate of shot : '))
                 y_shot = int(input('Enter Y coordinate of shot : '))
-                print(f'Coordinate is X:{x_shot} Y:{y_shot} ')
+                print(f'Coordinate is X,Y : {x_shot},{y_shot} ')
+                stopgo = False
             except ValueError:
                 print('Not a number')
 
@@ -59,4 +61,8 @@ game_board.print_board(board_size)
 GameBoard.create_ship(game_board)
 
 print(game_board.board)
+
+game_board.fire_shot()
+
+
 
