@@ -20,9 +20,19 @@ class GameBoard:
         print("\n--", "---" * board_size)
         label = 1
         for row in self.board:
-            print(label,"|", "  ".join(row))
+            print(label, "|", "  ".join(row))
             label = label + 1
 
+    def create_ship(self):
+        '''
+        this function adds the selected amount of  ships randomly to the baord
+        '''
+        for i in range(num_of_ship):
+            self.x_row, self.y_column = random.randint(0, (board_size - 1)), random.randint(0, (board_size - 1))
+        while self.board[self.x_row][self.y_column] == "X":
+            self.x_row, self.y_column = random.randint(0, (board_size - 1)), random.randint(0, (board_size - 1))
+        self.board[self.x_row][self.y_column] = "X"
+        return self.board
 
 board_size = int(input("Please enter the size of the baord : "))
 print(board_size)
@@ -33,4 +43,8 @@ print(num_of_ship)
 game_board = GameBoard(board_size, num_of_ship)
 
 game_board.print_board(board_size)
+
+GameBoard.create_ship(game_board)
+
+print(game_board.board)
 
