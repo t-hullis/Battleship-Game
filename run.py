@@ -14,12 +14,14 @@ class GameBoard:
         '''
         This function sets up the board for the player 
         '''
+        print("  |", end=" ")
         for i in range(board_size):
             print(f"{i + 1} ", end=" ")
+        print("\n--", "---" * board_size)
+        label = 1
         for row in self.board:
-            label = board_size
-            print(label, "  ".join(row))
-            label = label - 1
+            print(label,"|", "  ".join(row))
+            label = label + 1
 
 
 board_size = int(input("Please enter the size of the baord : "))
