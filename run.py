@@ -23,7 +23,7 @@ class GameBoard:
             print(label, "|", "  ".join(row))
             label = label + 1
 
-    def create_ship(self):
+    def create_ship(self, num_of_ship, board_size):
         '''
         this function adds the selected amount of  ships randomly to the baord
         '''
@@ -48,21 +48,24 @@ class GameBoard:
             except ValueError:
                 print('Not a number')
 
-board_size = int(input("Please enter the size of the baord : "))
-print(board_size)
-num_of_ship = int(input("Please enter the amount of ships on the board : "))
-print(num_of_ship)
 
+def run_game():
+    board_size = int(input("Please enter the size of the baord : "))
 
-game_board = GameBoard(board_size, num_of_ship)
+    print(board_size)
 
-game_board.print_board(board_size)
+    num_of_ship = int(input("Please enter the amount of ships on the board : "))
+    print(num_of_ship)
 
-GameBoard.create_ship(game_board)
+    game_board = GameBoard(board_size, num_of_ship)
 
-print(game_board.board)
+    game_board.print_board(board_size)
 
-game_board.fire_shot()
+    game_board.create_ship(num_of_ship, board_size)
 
+    print(game_board.board)
 
+    game_board.fire_shot()
+
+run_game()
 
