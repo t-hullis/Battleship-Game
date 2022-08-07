@@ -34,9 +34,10 @@ class GameBoard:
             self.board[self.x_row][self.y_column] = "X"
         return self.board
     
-    def fire_shot(self):
+    def fire_shot(self, hidden_board, game_board):
         '''
-        Function which takes user inputs to fire shots at the battleships on the board
+        Function which takes user inputs to fire shots at the battleships on
+        the board
         '''
         stopgo = True
         while stopgo:
@@ -47,11 +48,15 @@ class GameBoard:
                 stopgo = False
             except ValueError:
                 print('Not a number')
+        if hidden_board.board[x_shot][y_shot] != "X":
+            hidden_board.board[x_shot][y_shot] = "X"
+            game_board.board[x_shot][y_shot] = "X"
 
 
 def start_game():
     '''
-    function to collect all the needed data to set up the board as the user requests
+    function to collect all the needed data to set up the board as the user 
+    requests
     '''
     board_size = int(input("Please enter the size of the baord : "))
 
@@ -67,16 +72,18 @@ def start_game():
 def run_game(board_size, num_of_ship):
     
     game_board = GameBoard(board_size, num_of_ship)
+    hidden_board = GameBoard(board_size, num_of_ship)
 
     game_board.print_board(board_size)
 
-    game_board.create_ship(num_of_ship, board_size)
+    hidden_board.create_ship(num_of_ship, board_size)
 
     print(game_board.board)
+    print(hidden_board.board)
 
-    game_board.fire_shot()
+    game_board.fire_shot(hidden_board, game_board)
+    game_board.print_board(board_size)
 
 
 b_s, n_o_s = start_game()
 run_game(b_s, n_o_s)
-
