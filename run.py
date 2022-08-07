@@ -50,6 +50,9 @@ class GameBoard:
 
 
 def start_game():
+    '''
+    function to collect all the needed data to set up the board as the user requests
+    '''
     board_size = int(input("Please enter the size of the baord : "))
 
     print(board_size)
@@ -57,6 +60,8 @@ def start_game():
     num_of_ship = int(input("Please enter the amount of ships on the board : "))
 
     print(num_of_ship)
+
+    return num_of_ship, board_size
 
 
 def run_game(board_size, num_of_ship):
@@ -72,6 +77,6 @@ def run_game(board_size, num_of_ship):
     game_board.fire_shot()
 
 
-start_game()
-run_game()
+b_s, n_o_s = start_game()
+run_game(b_s, n_o_s)
 
