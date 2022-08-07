@@ -49,14 +49,18 @@ class GameBoard:
                 print('Not a number')
 
 
-def run_game():
+def start_game():
     board_size = int(input("Please enter the size of the baord : "))
 
     print(board_size)
 
     num_of_ship = int(input("Please enter the amount of ships on the board : "))
+
     print(num_of_ship)
 
+
+def run_game(board_size, num_of_ship):
+    
     game_board = GameBoard(board_size, num_of_ship)
 
     game_board.print_board(board_size)
@@ -67,5 +71,7 @@ def run_game():
 
     game_board.fire_shot()
 
+
+start_game()
 run_game()
 
