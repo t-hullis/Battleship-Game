@@ -11,14 +11,14 @@ class GameBoard:
         self.num_of_ship = num_of_ship
         self.board = [["~" for x in range(board_size)] for y in range(board_size)]
 
-    def print_board(self, board_size):
+    def print_board(self):
         '''
         This function sets up the board for the player 
         '''
         print("  |", end=" ")
-        for i in range(board_size):
+        for i in range(self.board_size):
             print(f"{i + 1} ", end=" ")
-        print("\n--", "---" * board_size)
+        print("\n--", "---" * self.board_size)
         label = 1
         for row in self.board:
             print(label, "|", "  ".join(row))
@@ -93,7 +93,7 @@ def run_game(board_size, num_of_ship, game_board, hidden_board):
         # game_board = GameBoard(board_size, num_of_ship)
         # hidden_board = GameBoard(board_size, num_of_ship)
 
-        game_board.print_board(board_size)
+        game_board.print_board()
 
         hidden_board.create_ship(num_of_ship, board_size)
 
@@ -101,9 +101,9 @@ def run_game(board_size, num_of_ship, game_board, hidden_board):
         # print(hidden_board.board)
 
         game_board.fire_shot(hidden_board, game_board, board_size)
-        game_board.print_board(board_size)
+        game_board.print_board()
         print("====" * board_size)
-        hidden_board.print_board(board_size)
+        hidden_board.print_board()
         game_round -= 1
         print("    " * board_size)
         print("    " * board_size)
