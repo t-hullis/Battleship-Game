@@ -56,13 +56,13 @@ class GameBoard:
             except ValueError:
                 print('Not a number')
             
-        if hidden_board.board[x_shot][y_shot] == "X":
+        if hidden_board.board[y_shot][x_shot] == "X":
             print("Ship hit!")
-            game_board.board[x_shot][y_shot] = "X"
-        elif hidden_board.board[x_shot][y_shot] != "X":
+            game_board.board[y_shot][x_shot] = "X"
+        elif hidden_board.board[y_shot][x_shot] != "X":
             print("You missed!")
-            hidden_board.board[x_shot][y_shot] = "O"
-            game_board.board[x_shot][y_shot] = "O"
+            hidden_board.board[y_shot][x_shot] = "O"
+            game_board.board[y_shot][x_shot] = "O"
         else:
             print("All ready selected")
 
@@ -81,6 +81,7 @@ def start_game():
     print(num_of_ship)
     game_board = GameBoard(board_size, num_of_ship)
     hidden_board = GameBoard(board_size, num_of_ship)
+    hidden_board.create_ship(num_of_ship, board_size)
   
     return num_of_ship, board_size, game_board, hidden_board
 
@@ -95,7 +96,7 @@ def run_game(board_size, num_of_ship, game_board, hidden_board):
 
         game_board.print_board()
 
-        hidden_board.create_ship(num_of_ship, board_size)
+        # hidden_board.create_ship(num_of_ship, board_size)
 
         # print(game_board.board)
         # print(hidden_board.board)
