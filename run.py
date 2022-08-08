@@ -48,9 +48,16 @@ class GameBoard:
                 stopgo = False
             except ValueError:
                 print('Not a number')
-        if hidden_board.board[x_shot][y_shot] != "X":
-            hidden_board.board[x_shot][y_shot] = "X"
+            
+        if hidden_board.board[x_shot][y_shot] == "X":
+            print("Ship hit!")
             game_board.board[x_shot][y_shot] = "X"
+        elif hidden_board.board[x_shot][y_shot] != "X":
+            print("You missed!")
+            hidden_board.board[x_shot][y_shot] = "O"
+            game_board.board[x_shot][y_shot] = "O"
+        else:
+            print("All ready selected")
 
 
 def start_game():
@@ -83,6 +90,8 @@ def run_game(board_size, num_of_ship):
 
     game_board.fire_shot(hidden_board, game_board)
     game_board.print_board(board_size)
+    print("====" * board_size)
+    hidden_board.print_board(board_size)
 
 
 b_s, n_o_s = start_game()
