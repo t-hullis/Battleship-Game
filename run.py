@@ -35,7 +35,7 @@ class GameBoard:
             self.board[self.x_row][self.y_column] = "X"
         return self.board
     
-    def fire_shot(self, hidden_board, game_board):
+    def fire_shot(self, hidden_board, game_board, board_size):
         '''
         Function which takes user inputs to fire shots at the battleships on
         the board
@@ -44,7 +44,13 @@ class GameBoard:
         while stopgo:
             try:
                 x_shot = int(input('Enter X coordinate of shot : ')) - 1
+                while x_shot not in range(board_size):
+                    print(f"Error, please enter a number between 1 and {board_size}")
+                    x_shot = int(input('Enter X coordinate of shot : ')) - 1
                 y_shot = int(input('Enter Y coordinate of shot : ')) - 1
+                while y_shot not in range(board_size):
+                    print(f"Error, please enter a number between 1 and {board_size}")
+                    y_shot = int(input('Enter X coordinate of shot : ')) - 1
                 print(f'Coordinate is X,Y : {x_shot},{y_shot} ')
                 stopgo = False
             except ValueError:
@@ -73,7 +79,7 @@ def start_game():
     num_of_ship = int(input("Please enter the amount of ships on the board : "))
 
     print(num_of_ship)
-
+   
     return num_of_ship, board_size
 
 
@@ -92,7 +98,7 @@ def run_game(board_size, num_of_ship):
         print(game_board.board)
         print(hidden_board.board)
 
-        game_board.fire_shot(hidden_board, game_board)
+        game_board.fire_shot(hidden_board, game_board, board_size)
         game_board.print_board(board_size)
         print("====" * board_size)
         hidden_board.print_board(board_size)
