@@ -1,4 +1,5 @@
 import random 
+import math
 
 
 class GameBoard:
@@ -42,8 +43,8 @@ class GameBoard:
         stopgo = True
         while stopgo:
             try:
-                x_shot = int(input('Enter X coordinate of shot : '))
-                y_shot = int(input('Enter Y coordinate of shot : '))
+                x_shot = int(input('Enter X coordinate of shot : ')) - 1
+                y_shot = int(input('Enter Y coordinate of shot : ')) - 1
                 print(f'Coordinate is X,Y : {x_shot},{y_shot} ')
                 stopgo = False
             except ValueError:
@@ -77,21 +78,27 @@ def start_game():
 
 
 def run_game(board_size, num_of_ship):
-    
-    game_board = GameBoard(board_size, num_of_ship)
-    hidden_board = GameBoard(board_size, num_of_ship)
+    game_round = math.ceil(board_size * 1.5)
+    print(f"This game will have {game_round} rounds!")
+    while 0 < game_round:
+        print(f"This is round {game_round}!")
+        game_board = GameBoard(board_size, num_of_ship)
+        hidden_board = GameBoard(board_size, num_of_ship)
 
-    game_board.print_board(board_size)
+        game_board.print_board(board_size)
 
-    hidden_board.create_ship(num_of_ship, board_size)
+        hidden_board.create_ship(num_of_ship, board_size)
 
-    print(game_board.board)
-    print(hidden_board.board)
+        print(game_board.board)
+        print(hidden_board.board)
 
-    game_board.fire_shot(hidden_board, game_board)
-    game_board.print_board(board_size)
-    print("====" * board_size)
-    hidden_board.print_board(board_size)
+        game_board.fire_shot(hidden_board, game_board)
+        game_board.print_board(board_size)
+        print("====" * board_size)
+        hidden_board.print_board(board_size)
+        game_round -= 1
+        print("    " * board_size)
+        print("    " * board_size)
 
 
 b_s, n_o_s = start_game()
