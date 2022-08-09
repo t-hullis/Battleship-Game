@@ -35,7 +35,7 @@ class GameBoard:
             self.board[self.x_row][self.y_column] = "X"
         return self.board
     
-    def fire_shot(self, hidden_board, game_board, board_size):
+    def fire_shot(self, hidden_board_player, player_board,computer_board, hidden_board_computer, board_size):
         '''
         Function which takes user inputs to fire shots at the battleships on
         the board
@@ -56,13 +56,24 @@ class GameBoard:
             except ValueError:
                 print('Not a number')
             
-        if hidden_board.board[y_shot][x_shot] == "X":
+        if hidden_board_player.board[y_shot][x_shot] == "X":
             print("Ship hit!")
-            game_board.board[y_shot][x_shot] = "X"
-        elif hidden_board.board[y_shot][x_shot] != "X":
+            player_board.board[y_shot][x_shot] = "X"
+        elif hidden_board_player.board[y_shot][x_shot] != "X":
             print("You missed!")
-            hidden_board.board[y_shot][x_shot] = "O"
-            game_board.board[y_shot][x_shot] = "O"
+            hidden_board_player.board[y_shot][x_shot] = "O"
+            player_board.board[y_shot][x_shot] = "O"
+        else:
+            print("All ready selected")
+        
+        ''' '''
+        if hidden_board_computer.board[y_shot][x_shot] == "X":
+            print("Ship hit!")
+            computer_board.board[y_shot][x_shot] = "X"
+        elif hidden_board_computer.board[y_shot][x_shot] != "X":
+            print("You missed!")
+            hidden_board_computer.board[y_shot][x_shot] = "O"
+            computer_board.board[y_shot][x_shot] = "O"
         else:
             print("All ready selected")
 
@@ -84,31 +95,35 @@ def start_game():
 
     print(num_of_ship)
 
-    game_board = GameBoard(board_size, num_of_ship)
-    hidden_board = GameBoard(board_size, num_of_ship)
-    hidden_board.create_ship(num_of_ship, board_size)
+    player_board = GameBoard(board_size, num_of_ship)
+    hidden_board_player = GameBoard(board_size, num_of_ship)
+    hidden_board_player.create_ship(num_of_ship, board_size)
 
-    game_board.print_board()
+    computer_board = GameBoard(board_size, num_of_ship)
+    hidden_board_computer = GameBoard(board_size, num_of_ship)
+    hidden_board_computer.create_ship(num_of_ship, board_size)
+
+    player_board.print_board()
     print("====" * board_size)
-    hidden_board.print_board()
+    hidden_board_player.print_board()
 
-    return num_of_ship, board_size, game_board, hidden_board
+    return num_of_ship, board_size, player_board, hidden_board_player
 
 
-def run_game(board_size, num_of_ship, game_board, hidden_board):
+def run_game(board_size, num_of_ship, player_board, hidden_board_player):
     game_round = math.ceil(board_size * 1.5)
     print(f"This game will have {game_round} rounds!")
     while 0 < game_round:
         print(f"This is round {game_round}!")
 
-        game_board.fire_shot(hidden_board, game_board, board_size)
-        game_board.print_board()
+        player_board.fire_shot(hidden_board_player, player_board, board_size)
+        player_board.print_board()
         print("====" * board_size)
-        hidden_board.print_board()
+        hidden_board_player.print_board()
         game_round -= 1
         print("    " * board_size)
         print("    " * board_size)
 
 
-n_o_s, b_s, g_b, h_b = start_game()
+b_s, n_o_s, g_b, h_b = start_game()
 run_game(b_s, n_o_s, g_b, h_b)
