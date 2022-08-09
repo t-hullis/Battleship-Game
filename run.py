@@ -57,25 +57,25 @@ class GameBoard:
                 print('Not a number')
 
         ''' Player Shot''' 
-        if hidden_board_player.board[y_shot][x_shot] == "X":
+        if hidden_board_computer.board[y_shot][x_shot] == "X":
             print("Ship hit!")
-            player_board.board[y_shot][x_shot] = "X"
-        elif hidden_board_player.board[y_shot][x_shot] != "X":
+            computer_board.board[y_shot][x_shot] = "X"
+        elif hidden_board_computer.board[y_shot][x_shot] != "X":
             print("You missed!")
-            hidden_board_player.board[y_shot][x_shot] = "O"
-            player_board.board[y_shot][x_shot] = "O"
+            hidden_board_computer.board[y_shot][x_shot] = "O"
+            computer_board.board[y_shot][x_shot] = "O"
         else:
             print("All ready selected")
         
         ''' Computer Shot '''
         x_shot_comp, y_shot_comp = random.randint(0, (board_size - 1)), random.randint(0, (board_size - 1))
-        if hidden_board_computer.board[y_shot_comp][x_shot_comp] == "X":
+        if hidden_board_player.board[y_shot_comp][x_shot_comp] == "X":
             print("Ship hit!")
-            computer_board.board[y_shot_comp][x_shot_comp] = "X"
-        elif hidden_board_computer.board[y_shot_comp][x_shot_comp] != "X":
+            player_board.board[y_shot_comp][x_shot_comp] = "X"
+        elif hidden_board_player.board[y_shot_comp][x_shot_comp] != "X":
             print("You missed!")
-            hidden_board_computer.board[y_shot_comp][x_shot_comp] = "O"
-            computer_board.board[y_shot_comp][x_shot_comp] = "O"
+            hidden_board_player.board[y_shot_comp][x_shot_comp] = "O"
+            player_board.board[y_shot_comp][x_shot_comp] = "O"
         else:
             print("All ready selected")
 
@@ -107,10 +107,9 @@ def start_game():
 
     hidden_board_player.print_board()
     print("====" * board_size)
-    # hidden_board_player.print_board()
     computer_board.print_board()
 
-    return num_of_ship, board_size, player_board, hidden_board_player, hidden_board_computer, computer_board
+    return board_size, num_of_ship, player_board, hidden_board_player, computer_board, hidden_board_computer
 
 
 def run_game(board_size, num_of_ship, player_board, hidden_board_player, computer_board, hidden_board_computer):
@@ -128,8 +127,6 @@ def run_game(board_size, num_of_ship, player_board, hidden_board_player, compute
         print("    " * board_size)
 
 
-n_o_s, b_s, p_b, h_b_p, c_b, h_b_c = start_game()
+b_s, n_o_s, p_b, h_b_p, c_b, h_b_c = start_game()
 run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c)
 
-# hidden_board_player, player_board, board_size, computer_board, hidden_board_computer)
-# hidden_board_player, player_board, computer_board, hidden_board_computer, board_siz
