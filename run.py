@@ -55,7 +55,8 @@ class GameBoard:
                 stopgo = False
             except ValueError:
                 print('Not a number')
-            
+
+        ''' Player Shot''' 
         if hidden_board_player.board[y_shot][x_shot] == "X":
             print("Ship hit!")
             player_board.board[y_shot][x_shot] = "X"
@@ -66,14 +67,15 @@ class GameBoard:
         else:
             print("All ready selected")
         
-        ''' '''
-        if hidden_board_computer.board[y_shot][x_shot] == "X":
+        ''' Computer Shot '''
+        x_shot_comp, y_shot_comp = random.randint(0, (board_size - 1)), random.randint(0, (board_size - 1))
+        if hidden_board_computer.board[y_shot_comp][x_shot_comp] == "X":
             print("Ship hit!")
-            computer_board.board[y_shot][x_shot] = "X"
-        elif hidden_board_computer.board[y_shot][x_shot] != "X":
+            computer_board.board[y_shot_comp][x_shot_comp] = "X"
+        elif hidden_board_computer.board[y_shot_comp][x_shot_comp] != "X":
             print("You missed!")
-            hidden_board_computer.board[y_shot][x_shot] = "O"
-            computer_board.board[y_shot][x_shot] = "O"
+            hidden_board_computer.board[y_shot_comp][x_shot_comp] = "O"
+            computer_board.board[y_shot_comp][x_shot_comp] = "O"
         else:
             print("All ready selected")
 
