@@ -76,11 +76,11 @@ class GameBoard:
         ''' Computer Shot '''
         x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
         if h_b_p.board[y_shot_comp][x_shot_comp] == "X":
-            print("Ship hit!")
+            print("Computer hit your hip!")
             p_b.board[y_shot_comp][x_shot_comp] = "H"
             h_b_p.board[y_shot_comp][x_shot_comp] = "H"
         elif h_b_p.board[y_shot_comp][x_shot_comp] != "X":
-            print("You missed!")
+            print("Computer missed your ships!")
             h_b_p.board[y_shot_comp][x_shot_comp] = "O"
             p_b.board[y_shot_comp][x_shot_comp] = "O"
         else:
@@ -141,9 +141,10 @@ def start_game():
 
 
 def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
-    game_round = math.ceil(b_s * 1.5)
+    # game_round = math.ceil(b_s * 1.5) 0 < game_round
+    game_round = True
     print(f"This game will have {game_round} rounds!")
-    while 0 < game_round:
+    while game_round:
         print(f"This is round {game_round}!")
 
         p_b.fire_shot(h_b_p, p_b, b_s, c_b, h_b_c)
@@ -161,10 +162,13 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
         print(computer_hits)
         if computer_hits == n_o_s:
             print("computer wins")
+            game_round = False
         elif player_hits == n_o_s:
             print("Computer wins")
+            game_round = False
+        else:
+            game_round = True
 
 
 b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn = start_game()
 run_game(b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn)
-
