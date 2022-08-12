@@ -48,14 +48,14 @@ class GameBoard:
         stopgo = True
         while stopgo:
             try:
-                x_shot = int(input('Enter X coordinate of shot : ')) - 1
+                x_shot = int(input('Enter Horizontal coordinate : ')) - 1
                 while x_shot not in range(b_s):
                     print(f"Error, please enter a number between 1 and {b_s}")
-                    x_shot = int(input('Enter X coordinate of shot : ')) - 1
-                y_shot = int(input('Enter Y coordinate of shot : ')) - 1
+                    x_shot = int(input('Enter Horizontal coordinate : ')) - 1
+                y_shot = int(input('Enter Vertical coordinate : ')) - 1
                 while y_shot not in range(b_s):
                     print(f"Error, please enter a number between 1 and {b_s}")
-                    y_shot = int(input('Enter X coordinate of shot : ')) - 1
+                    y_shot = int(input('Enter Vertical coordinate : ')) - 1
                 print(f'Coordinate is X,Y : {x_shot},{y_shot} ')
                 stopgo = False
             except ValueError:
@@ -100,6 +100,19 @@ def start_game():
     function to collect all the needed data to set up the board as the user 
     requests
     '''
+    print("Welcome to Battleships!")
+    print("""
+    1,  Choose the size of the board and the number of battleships
+        you would like to be placed on the board.
+
+    2,  Guess the coordinates of the ships on the computer board.
+
+    3,  You can see where the shots have been placed on your board,
+        denoted by the X.
+    
+    4,  The first one to find all the oppostions battleships
+        wins!
+    """)
     b_s = int(input("Please enter the size of the board : "))
 
     print(b_s)
@@ -116,8 +129,12 @@ def start_game():
     h_b_c = GameBoard(b_s, n_o_s)
     h_b_c.create_ship(n_o_s, b_s)
 
+    print("   ")
+    print("   ")
+    print("Your Board:")
     h_b_p.print_board()
     print("====" * b_s)
+    print("Computer Board:")
     c_b.print_board()
 
     return b_s, n_o_s, p_b, h_b_p, c_b, h_b_c
@@ -130,8 +147,10 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
         print(f"This is round {game_round}!")
 
         p_b.fire_shot(h_b_p, p_b, b_s, c_b, h_b_c)
+        print("Your Board:")
         h_b_p.print_board()
         print("====" * b_s)
+        print("Computer Board:")
         c_b.print_board()
         game_round -= 1
         print("    " * b_s)
