@@ -2,3 +2,4 @@ start
 collect board size and number of ships in the game
 set up board using loops
 randomly place ships on the board
+board_size, num_of_ship, player_board, hidden_board_player, computer_board, hidden_board_computer
