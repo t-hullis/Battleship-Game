@@ -59,7 +59,8 @@ class GameBoard:
         ''' Player Shot''' 
         if hidden_board_computer.board[y_shot][x_shot] == "X":
             print("Ship hit!")
-            computer_board.board[y_shot][x_shot] = "X"
+            computer_board.board[y_shot][x_shot] = "H"
+            hidden_board_computer.board[y_shot][x_shot] = "H"
         elif hidden_board_computer.board[y_shot][x_shot] != "X":
             print("You missed!")
             hidden_board_computer.board[y_shot][x_shot] = "O"
@@ -71,17 +72,23 @@ class GameBoard:
         x_shot_comp, y_shot_comp = random.randint(0, (board_size - 1)), random.randint(0, (board_size - 1))
         if hidden_board_player.board[y_shot_comp][x_shot_comp] == "X":
             print("Ship hit!")
-            player_board.board[y_shot_comp][x_shot_comp] = "X"
+            player_board.board[y_shot_comp][x_shot_comp] = "H"
+            hidden_board_player.board[y_shot_comp][x_shot_comp] = "H"
         elif hidden_board_player.board[y_shot_comp][x_shot_comp] != "X":
             print("You missed!")
             hidden_board_player.board[y_shot_comp][x_shot_comp] = "O"
             player_board.board[y_shot_comp][x_shot_comp] = "O"
         else:
             print("All ready selected")
+    
+    def count_hit_ships(self):
+        hit_ships = 0
+        for row in self.board:
+            for column in row:
+                if column == "H":
+                    hit_ships += 1
+        return hit_ships
 
-    # def computer_shot(self):
-    #     '''
-    #     '''
 
 
 def start_game():
@@ -124,7 +131,15 @@ def run_game(board_size, num_of_ship, player_board, hidden_board_player, compute
         computer_board.print_board()
         game_round -= 1
         print("    " * board_size)
-        print("    " * board_size)
+
+        computer_hits = hidden_board_computer.count_hit_ships()
+        player_hits = hidden_board_player.count_hit_ships()
+        print(player_hits)
+        print(computer_hits)
+        if computer_hits == num_of_ship:
+            print("computer wins")
+        elif player_hits == num_of_ship:
+            print("Computer wins")
 
 
 b_s, n_o_s, p_b, h_b_p, c_b, h_b_c = start_game()
