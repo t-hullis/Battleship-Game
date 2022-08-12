@@ -1,8 +1,10 @@
 import random as r 
 import math
 # KEY:
-# b_s, n_o_s, p_b, h_b_p, c_b, h_b_c
-# b_s, n_o_s, p_b, h_b_p, c_b, h_b_c r
+# b_s,        n_o_s,       p_b,          h_b_p,               c_b,
+# board_size, num_of_ship, player_board, hidden_board_player, computer_board
+# h_b_c
+# hidden_board_computer
 
 
 class GameBoard:
@@ -144,6 +146,6 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
             print("Computer wins")
 
 
-b_s, n_o_s, p_b, h_b_p, c_b, h_b_c = start_game()
-run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c)
+b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn = start_game()
+run_game(b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn)
 
