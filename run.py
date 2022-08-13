@@ -1,5 +1,5 @@
-import random as r 
-import math
+import random as r
+
 # KEY:
 # b_s,        n_o_s,       p_b,          h_b_p,               c_b,
 # board_size, num_of_ship, player_board, hidden_board_player, computer_board
@@ -142,9 +142,9 @@ def start_game():
 
 def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
     # game_round = math.ceil(b_s * 1.5) 0 < game_round
-    game_round = True
-    print(f"This game will have {game_round} rounds!")
-    while game_round:
+    game_continue = True
+    game_round = 1
+    while game_continue:
         print(f"This is round {game_round}!")
 
         p_b.fire_shot(h_b_p, p_b, b_s, c_b, h_b_c)
@@ -153,21 +153,23 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
         print("====" * b_s)
         print("Computer Board:")
         c_b.print_board()
-        game_round -= 1
+        game_round += 1
         print("    " * b_s)
 
-        computer_hits = h_b_c.count_hit_ships()
-        player_hits = h_b_p.count_hit_ships()
-        print(player_hits)
-        print(computer_hits)
+        player_hits = h_b_c.count_hit_ships()
+        computer_hits = h_b_p.count_hit_ships()
+        print(f"Player {player_hits} : {computer_hits} Computer")
         if computer_hits == n_o_s:
-            print("computer wins")
+            print("You win!")
             game_round = False
         elif player_hits == n_o_s:
             print("Computer wins")
             game_round = False
         else:
             game_round = True
+        exit_game = input("Press ENTER to contiue. Press n to exit :")
+        if exit_game == "n":
+            game_continue = False
 
 
 b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn = start_game()
