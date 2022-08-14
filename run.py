@@ -66,6 +66,8 @@ class GameBoard:
             print("You hit the computers ship!")
             c_b.board[y_shot][x_shot] = "H"
             h_b_c.board[y_shot][x_shot] = "H"
+        elif h_b_c.board[y_shot][x_shot] == "H":
+            print("You have already hit this ship")
         elif h_b_c.board[y_shot][x_shot] != "X":
             print("You missed!")
             h_b_c.board[y_shot][x_shot] = "O"
@@ -77,7 +79,6 @@ class GameBoard:
         x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
         while h_b_p.board[y_shot_comp][x_shot_comp] == "O" or h_b_p.board[y_shot_comp][x_shot_comp] == "H":
             x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
-        print(x_shot_comp, y_shot_comp)
         if h_b_p.board[y_shot_comp][x_shot_comp] == "X":
             print("Computer hit your hip!")
             p_b.board[y_shot_comp][x_shot_comp] = "H"
@@ -105,7 +106,7 @@ def start_game():
     '''
     print("Welcome to Battleships!")
     print("""
-    1,  Choose the size of the board and the number of battleships
+    1,  Choose the size of the board (between 3 and 15) and the number of battleships
         you would like to be placed on the board.
 
     2,  Guess the coordinates of the ships on the computer board.
