@@ -96,12 +96,6 @@ class GameBoard:
                 if column == "H":
                     hit_ships += 1
         return hit_ships
-    
-    def no_repeat(self, x_row, y_column):
-        prev_vals = [[0, 0]]
-        prev_vals.append([x_row, y_column])
-
-
 
 
 def start_game():
@@ -118,6 +112,10 @@ def start_game():
 
     3,  You can see where the shots have been placed on your board,
         denoted by the X.
+    
+    4,  If you place a shot in the same place twise, you will lose
+        that go, so make sure you shot to different coordinates 
+        each time.
     
     4,  The first one to find all the oppostions battleships
         wins!
@@ -169,11 +167,21 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
         computer_hits = h_b_p.count_hit_ships()
         print(f"Player {player_hits} : {computer_hits} Computer")
         if computer_hits == n_o_s:
-            print("You win!")
-            game_round = False
+            print("The computer has won!")
+            print("Press enter to end the game or")
+            restart = input("Press r, then enter to restart: ")
+            if restart == "r":
+                b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn = start_game()
+                run_game(b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn)
+            game_continue = False
         elif player_hits == n_o_s:
-            print("Computer wins")
-            game_round = False
+            print("You have won!")
+            print("Press enter to end the game or")
+            restart = input("Press r, then enter to restart: ")
+            if restart == "r":
+                b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn = start_game()
+                run_game(b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn)
+            game_continue = False
         else:
             game_round = True
         exit_game = input("Press ENTER to contiue. Press n to exit :")
