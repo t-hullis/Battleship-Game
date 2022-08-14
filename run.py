@@ -63,7 +63,7 @@ class GameBoard:
 
         ''' Player Shot''' 
         if h_b_c.board[y_shot][x_shot] == "X":
-            print("Ship hit!")
+            print("You hit the computers ship!")
             c_b.board[y_shot][x_shot] = "H"
             h_b_c.board[y_shot][x_shot] = "H"
         elif h_b_c.board[y_shot][x_shot] != "X":
@@ -93,6 +93,12 @@ class GameBoard:
                 if column == "H":
                     hit_ships += 1
         return hit_ships
+    
+    def no_repeat(self, x_row, y_column):
+        prev_vals = [[0, 0]]
+        prev_vals.append([x_row, y_column])
+
+
 
 
 def start_game():
