@@ -75,6 +75,9 @@ class GameBoard:
         
         ''' Computer Shot '''
         x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
+        while h_b_p.board[y_shot_comp][x_shot_comp] == "O" or h_b_p.board[y_shot_comp][x_shot_comp] == "H":
+            x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
+        print(x_shot_comp, y_shot_comp)
         if h_b_p.board[y_shot_comp][x_shot_comp] == "X":
             print("Computer hit your hip!")
             p_b.board[y_shot_comp][x_shot_comp] = "H"
