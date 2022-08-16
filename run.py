@@ -18,7 +18,7 @@ class GameBoard:
 
     def print_board(self):
         '''
-        This function sets up the board for the player 
+        This function sets up the board for the player
         '''
         print("  |", end=" ")
         for i in range(self.b_s):
@@ -41,7 +41,7 @@ class GameBoard:
                 self.y_column = r.randint(0, (b_s - 1))
             self.board[self.x_row][self.y_column] = "X"
         return self.board
-    
+
     def fire_shot(self, h_b_p, p_b, b_s, c_b, h_b_c):
         '''
         Function which takes user inputs to fire shots at the battleships on
@@ -63,7 +63,7 @@ class GameBoard:
             except ValueError:
                 print('Not a number')
 
-        ''' Player Shot''' 
+        ''' Player Shot'''
         if h_b_c.board[y_shot][x_shot] == "X":
             print("You hit the computers ship!")
             c_b.board[y_shot][x_shot] = "H"
@@ -76,11 +76,10 @@ class GameBoard:
             c_b.board[y_shot][x_shot] = "O"
         else:
             print("All ready selected")
-        
         ''' Computer Shot '''
         x_shot_comp = r.randint(0, (b_s - 1))
         y_shot_comp = r.randint(0, (b_s - 1))
-        while (h_b_p.board[y_shot_comp][x_shot_comp] == "O" or 
+        while (h_b_p.board[y_shot_comp][x_shot_comp] == "O" or
                 h_b_p.board[y_shot_comp][x_shot_comp] == "H"):
             x_shot_comp = r.randint(0, (b_s - 1))
             y_shot_comp = r.randint(0, (b_s - 1))
@@ -96,7 +95,7 @@ class GameBoard:
             p_b.board[y_shot_comp][x_shot_comp] = "O"
         else:
             print("All ready selected")
-    
+
     def count_hit_ships(self):
         '''
         Searches for hit ships on the boards, so a score of the game can be
@@ -112,7 +111,7 @@ class GameBoard:
 
 def start_game():
     '''
-    function to collect all the needed data to set up the board as the user 
+    function to collect all the needed data to set up the board as the user
     requests
     '''
     print("Welcome to Battleships!")
@@ -124,12 +123,12 @@ def start_game():
 
     3,  You can see where the shots have been placed on your board,
         denoted by the X.
-    
+
     4,  If you place a shot in the same place twise, you will lose
-        that go, so make sure you shot to different coordinates 
+        that go, so make sure you shot to different coordinates
         each time.
-    
-    4,  The first one to find all the oppostions battleships
+
+    5,  The first one to find all the oppostions battleships
         wins!
     """)
     b_s = int(input("Please enter the size of the board : "))

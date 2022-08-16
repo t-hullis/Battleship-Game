@@ -46,4 +46,17 @@ The game is won when a player finds all the opponents ships before they find you
 ## Data Model
 I have used a Gameboard class to set up the board, using 4 instances for a hidden and display board for both the user and the computer. In this class you can set the board size and ship number with the methods within, ie: create_ships, print_board. There is also a method called fire_shots which places the shots on the board and a method called count_ships, which adds up the hit ships at the end of each round, to give the score of the game.
 
+## Testing
+
+- Passed python Pep8 online code validator.
+- Tested within github on my terminal with no problems as well as on Heroku.
+
+<img src="images/pep8.png" width=70%>
+
+### Bugs
+- I only found two bugs during this project, 
+    - The x axis of the player boards was displaying the number of ships rather than the size of the board. this was due to my start_game function returning its  variables in the wrong order for the run_game function.
+    - The axis' of the ship hit function were the wrong way round so it wasnt detecting wether the right ship was hit.
+
+
 
