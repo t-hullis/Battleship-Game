@@ -34,9 +34,11 @@ class GameBoard:
         this function adds the selected amount of  ships randomly to the baord
         '''
         for i in range(n_o_s):
-            self.x_row, self.y_column = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
+            self.x_row = r.randint(0, (b_s - 1))
+            self.y_column = r.randint(0, (b_s - 1))
             while self.board[self.x_row][self.y_column] == "X":
-                self.x_row, self.y_column = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
+                self.x_row = r.randint(0, (b_s - 1))
+                self.y_column = r.randint(0, (b_s - 1))
             self.board[self.x_row][self.y_column] = "X"
         return self.board
     
@@ -76,13 +78,18 @@ class GameBoard:
             print("All ready selected")
         
         ''' Computer Shot '''
-        x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
-        while h_b_p.board[y_shot_comp][x_shot_comp] == "O" or h_b_p.board[y_shot_comp][x_shot_comp] == "H":
-            x_shot_comp, y_shot_comp = r.randint(0, (b_s - 1)), r.randint(0, (b_s - 1))
+        x_shot_comp = r.randint(0, (b_s - 1))
+        y_shot_comp = r.randint(0, (b_s - 1))
+        while (h_b_p.board[y_shot_comp][x_shot_comp] == "O" or 
+                h_b_p.board[y_shot_comp][x_shot_comp] == "H"):
+            x_shot_comp = r.randint(0, (b_s - 1))
+            y_shot_comp = r.randint(0, (b_s - 1))
         if h_b_p.board[y_shot_comp][x_shot_comp] == "X":
             print("Computer hit your hip!")
             p_b.board[y_shot_comp][x_shot_comp] = "H"
             h_b_p.board[y_shot_comp][x_shot_comp] = "H"
+        elif h_b_p.board[y_shot_comp][x_shot_comp] == "H":
+            print("already hit this shot")
         elif h_b_p.board[y_shot_comp][x_shot_comp] != "X":
             print("Computer missed your ships!")
             h_b_p.board[y_shot_comp][x_shot_comp] = "O"
@@ -91,6 +98,10 @@ class GameBoard:
             print("All ready selected")
     
     def count_hit_ships(self):
+        '''
+        Searches for hit ships on the boards, so a score of the game can be
+        given.
+        '''
         hit_ships = 0
         for row in self.board:
             for column in row:
@@ -106,8 +117,8 @@ def start_game():
     '''
     print("Welcome to Battleships!")
     print("""
-    1,  Choose the size of the board (between 3 and 15) and the number of battleships
-        you would like to be placed on the board.
+    1,  Choose the size of the board (between 3 and 15) and the number
+        of battleships you would like to be placed on the board.
 
     2,  Guess the coordinates of the ships on the computer board.
 
@@ -149,6 +160,9 @@ def start_game():
 
 
 def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
+    '''
+    This is the looping function which makes each round of the game.
+    '''
     # game_round = math.ceil(b_s * 1.5) 0 < game_round
     game_continue = True
     game_round = 1
