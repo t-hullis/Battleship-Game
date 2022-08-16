@@ -49,12 +49,12 @@ This game only has single ships.
 <img src="images/error-feedback.png" width="49%">
 <br/>
 
-- Once there is winner, the porgram will anounce that winner and ask the user if they would like to replay the game or exit the programme.
+- Once there is winner, the porgramme will anounce that winner and ask the user if they would like to replay the game or exit the programme.
 
 <br/>
 
 ## Data Model
-I have used a Gameboard class to set up the board, using 4 instances for a hidden and display board for both the user and the computer. In this class you can set the board size and ship number with the methods within, ie: create_ships, print_board. There is also a method called fire_shots which places the shots on the board and a method called count_ships, which adds up the hit ships at the end of each round, to give the score of the game.
+I have used a Gameboard class to set up the board, making 4 instances of a hidden and display board for both the user and the computer. In this class you can set the board size and ship number with the methods within, ie: create_ships, print_board. There is also a method called fire_shots which places the shots on the board and a method called count_ships, which adds up the hit ships at the end of each round, to give the score of the game.
 <br/>
 
 # Testing
@@ -66,16 +66,16 @@ I have used a Gameboard class to set up the board, using 4 instances for a hidde
 <br/>
 
 ## Bugs
-- I only found two bugs during this project, 
-    - The x axis of the game boards were displaying the number of ships rather than the size of the board. This was due to my start_game function returning its  variables in the wrong order for the run_game function.
+- I only found three bugs during this project, 
+    - The x axis of the game boards was displaying the number of ships, n_o_s, rather than the size of the board. This was due to my start_game function returning its  variables in the wrong order for the run_game function.
     - The axis' of the ship hit function were the wrong way round so it wasnt detecting wether the right ship was hit.
-    - When the use shot a ship that had already been hit, the H on the board turned to an O which reduced their score by one and made it impossible for them to get it back. Meaning they would automaticly lose. So i stoppeed the H's for being able to be over written.
+    - When the user shot a ship that had already been hit, the H on the board turned to an O which reduced their score by one and made it impossible for them to get it back. Meaning they would automaticly lose. So i stopped the H's for being able to be over written.
 
 These were logged in my commits.
 <br/>
 
 # Credits and Deployment
-I have depolyed the projet using the code institute template for a mock terminal for Heroku.
+I have depolyed the project using the code institute template for a mock terminal for Heroku.
 
 - Code institute for the github template.
     - Steps for deployment

@@ -58,7 +58,6 @@ class GameBoard:
                 while y_shot not in range(b_s):
                     print(f"Error, please enter a number between 1 and {b_s}")
                     y_shot = int(input('Enter Vertical coordinate : ')) - 1
-                print(f'Coordinate is X,Y : {x_shot},{y_shot} ')
                 stopgo = False
             except ValueError:
                 print('Not a number')
@@ -162,13 +161,16 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
     '''
     This is the looping function which makes each round of the game.
     '''
-    # game_round = math.ceil(b_s * 1.5) 0 < game_round
     game_continue = True
     game_round = 1
     while game_continue:
+        print("  ")
+        print("  ")
+        print("===========================================")
         print(f"This is round {game_round}!")
-
+        # The boards being printed to the user
         p_b.fire_shot(h_b_p, p_b, b_s, c_b, h_b_c)
+        print("   ")
         print("Your Board:")
         h_b_p.print_board()
         print("====" * b_s)
@@ -179,6 +181,7 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
 
         player_hits = h_b_c.count_hit_ships()
         computer_hits = h_b_p.count_hit_ships()
+        # Scoreboard
         print(f"Player {player_hits} : {computer_hits} Computer")
         if computer_hits == n_o_s:
             print("The computer has won!")
@@ -197,11 +200,10 @@ def run_game(b_s, n_o_s, p_b, h_b_p, c_b, h_b_c):
                 run_game(b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn)
             game_continue = False
         else:
-            game_round = True
-        exit_game = input("Press ENTER to contiue. Press n to exit :")
-        if exit_game == "n":
-            game_continue = False
-
+            exit_game = input("Press ENTER to contiue. Press n to exit :")
+            if exit_game == "n":
+                game_continue = False
+        
 
 b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn = start_game()
 run_game(b_sn, n_o_sn, p_bn, h_b_pn, c_bn, h_b_cn)
